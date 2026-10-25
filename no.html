@@ -1,0 +1,442 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إشعارات نظام الحج</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Tahoma, sans-serif;
+        }
+
+        body {
+            background-color: #F1F4EA;
+            min-height: 100vh;
+            color: #153429;
+        }
+
+        /* الشريط العلوي */
+        .navbar {
+            min-height: 70px;
+            background-color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 35px;
+            box-shadow: 0 2px 10px rgba(18, 71, 59, 0.10);
+            border-bottom: 2px solid #B59A56;
+        }
+
+        .title {
+            color: #12473B;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        /* منطقة الإشعارات */
+        .notification-container {
+            position: relative;
+        }
+
+        .notification-button {
+            width: 48px;
+            height: 48px;
+            border: none;
+            border-radius: 50%;
+            background-color: #F1F4EA;
+            color: #12473B;
+            font-size: 23px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .notification-button:hover {
+            background-color: #E2E9DE;
+        }
+
+        /* عداد الإشعارات */
+        .notification-count {
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            min-width: 21px;
+            height: 21px;
+            padding: 0 5px;
+            background-color: #B59A56;
+            color: #FFFFFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* صندوق الإشعارات */
+        .notifications-box {
+            display: none;
+            position: absolute;
+            top: 58px;
+            left: 0;
+            width: 380px;
+            max-width: calc(100vw - 30px);
+            background-color: #FFFFFF;
+            border-radius: 14px;
+            box-shadow: 0 8px 30px rgba(18, 71, 59, 0.18);
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .notifications-box.show {
+            display: block;
+        }
+
+        .notifications-header {
+            padding: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #E5E9E2;
+        }
+
+        .notifications-header h3 {
+            color: #12473B;
+        }
+
+        .clear-button {
+            border: none;
+            background: none;
+            color: #556C61;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .clear-button:hover {
+            color: #B59A56;
+        }
+
+        /* الإشعار */
+        .notification {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            border-bottom: 1px solid #E9EDE6;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .notification:hover {
+            background-color: #F1F4EA;
+        }
+
+        .notification.unread {
+            background-color: #EDF3EC;
+        }
+
+        .notification-icon {
+            min-width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+        }
+
+        .danger {
+            background-color: #F8E5DF;
+        }
+
+        .warning {
+            background-color: #F5ECD5;
+        }
+
+        .info {
+            background-color: #E5EDE8;
+        }
+
+        .success {
+            background-color: #DCE9DF;
+        }
+
+        .notification h4 {
+            color: #153429;
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        .notification p {
+            color: #556C61;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .notification small {
+            display: block;
+            color: #77877D;
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+        /* لا توجد إشعارات */
+        .empty {
+            display: none;
+            text-align: center;
+            padding: 35px;
+            color: #556C61;
+        }
+
+        .empty-icon {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        /* محتوى الصفحة */
+        .content {
+            padding: 40px;
+        }
+
+        .content h1 {
+            color: #12473B;
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            color: #556C61;
+            line-height: 1.8;
+        }
+
+        /* زر إضافة إشعار */
+        .add-button {
+            margin-top: 30px;
+            padding: 13px 22px;
+            border: none;
+            border-radius: 8px;
+            background-color: #12473B;
+            color: #FFFFFF;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+
+        .add-button:hover {
+            background-color: #153429;
+            outline: 2px solid #B59A56;
+        }
+
+        /* تصميم الجوال */
+        @media (max-width: 500px) {
+            .navbar {
+                padding: 12px 16px;
+                gap: 10px;
+            }
+
+            .title {
+                font-size: 16px;
+            }
+
+            .notifications-box {
+                left: 0;
+                width: 340px;
+            }
+
+            .content {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- الشريط العلوي -->
+    <header class="navbar">
+        <div class="title">
+            نظام إدارة مخيمات الحجاج
+        </div>
+
+        <div class="notification-container">
+            <button
+                type="button"
+                class="notification-button"
+                onclick="toggleNotifications()"
+                aria-label="عرض الإشعارات"
+                aria-expanded="false"
+                id="notificationButton">
+
+                🔔
+
+                <span class="notification-count" id="notificationCount">
+                    4
+                </span>
+            </button>
+
+            <!-- قائمة الإشعارات -->
+            <div class="notifications-box" id="notificationsBox">
+
+                <div class="notifications-header">
+                    <h3>الإشعارات</h3>
+
+                    <button
+                        type="button"
+                        class="clear-button"
+                        onclick="clearNotifications()">
+                        حذف الكل
+                    </button>
+                </div>
+
+                <div id="notificationsList">
+
+                    <div class="notification unread" onclick="readNotification(this)">
+                        <div class="notification-icon danger">⚠️</div>
+                        <div>
+                            <h4>تجاوز سعة المخيم</h4>
+                            <p>مخيم رقم 12 تجاوز السعة المحددة للحجاج.</p>
+                            <small>منذ 10 دقائق</small>
+                        </div>
+                    </div>
+
+                    <div class="notification unread" onclick="readNotification(this)">
+                        <div class="notification-icon warning">🔔</div>
+                        <div>
+                            <h4>انخفاض مستوى الخدمة</h4>
+                            <p>تم تسجيل انخفاض في مستوى الخدمات في مخيم رقم 8.</p>
+                            <small>منذ 25 دقيقة</small>
+                        </div>
+                    </div>
+
+                    <div class="notification unread" onclick="readNotification(this)">
+                        <div class="notification-icon info">👥</div>
+                        <div>
+                            <h4>تحديث أعداد الحجاج</h4>
+                            <p>تم تحديث عدد الحجاج في المخيم رقم 5.</p>
+                            <small>منذ ساعة</small>
+                        </div>
+                    </div>
+
+                    <div class="notification unread" onclick="readNotification(this)">
+                        <div class="notification-icon success">✅</div>
+                        <div>
+                            <h4>تم تحديث بيانات المخيم</h4>
+                            <p>تم تحديث بيانات مخيم رقم 3 بنجاح.</p>
+                            <small>منذ ساعتين</small>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="empty" id="emptyMessage">
+                    <div class="empty-icon">🔕</div>
+                    <p>لا توجد إشعارات جديدة</p>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- محتوى الصفحة -->
+    <main class="content">
+        <h1>لوحة التحكم</h1>
+        <p>مرحبًا بك في نظام إدارة مخيمات الحجاج.</p>
+
+        <button
+            type="button"
+            class="add-button"
+            onclick="addNotification()">
+            + إضافة إشعار تجريبي
+        </button>
+    </main>
+
+    <!-- JavaScript -->
+    <script>
+        const box = document.getElementById("notificationsBox");
+        const list = document.getElementById("notificationsList");
+        const counter = document.getElementById("notificationCount");
+        const emptyMessage = document.getElementById("emptyMessage");
+        const notificationButton = document.getElementById("notificationButton");
+
+        // فتح وإغلاق قائمة الإشعارات
+        function toggleNotifications() {
+            const isOpen = box.classList.toggle("show");
+            notificationButton.setAttribute("aria-expanded", isOpen);
+        }
+
+        // تحديث عدد الإشعارات غير المقروءة
+        function updateCount() {
+            const unreadCount = list.querySelectorAll(".notification.unread").length;
+
+            counter.textContent = unreadCount;
+            counter.style.display = unreadCount === 0 ? "none" : "flex";
+
+            emptyMessage.style.display =
+                list.querySelectorAll(".notification").length === 0
+                    ? "block"
+                    : "none";
+        }
+
+        // تحديد الإشعار كمقروء
+        function readNotification(notification) {
+            notification.classList.remove("unread");
+            updateCount();
+        }
+
+        // حذف جميع الإشعارات
+        function clearNotifications() {
+            list.replaceChildren();
+            updateCount();
+        }
+
+        // إضافة إشعار تجريبي جديد
+        function addNotification() {
+            const notification = document.createElement("div");
+            notification.className = "notification unread";
+
+            const icon = document.createElement("div");
+            icon.className = "notification-icon info";
+            icon.textContent = "📢";
+
+            const content = document.createElement("div");
+
+            const title = document.createElement("h4");
+            title.textContent = "إشعار جديد";
+
+            const message = document.createElement("p");
+            message.textContent =
+                "تم استلام إشعار جديد في نظام إدارة مخيمات الحجاج.";
+
+            const time = document.createElement("small");
+            time.textContent = "الآن";
+
+            content.append(title, message, time);
+            notification.append(icon, content);
+
+            notification.addEventListener("click", function () {
+                readNotification(notification);
+            });
+
+            list.prepend(notification);
+            updateCount();
+        }
+
+        // إغلاق القائمة عند الضغط خارجها
+        document.addEventListener("click", function (event) {
+            const container = document.querySelector(".notification-container");
+
+            if (!container.contains(event.target)) {
+                box.classList.remove("show");
+                notificationButton.setAttribute("aria-expanded", "false");
+            }
+        });
+
+        // تحديث العداد عند فتح الصفحة
+        updateCount();
+    </script>
+
+</body>
+</html>

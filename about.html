@@ -1,0 +1,305 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>من نحن | نظام إدارة مخيمات الحجاج</title>
+
+    <style>
+        :root {
+            --green: #12473B;
+            --gold: #B59A56;
+            --background: #F1F4EA;
+            --text: #153429;
+            --white: #FFFFFF;
+            --muted-green: #556C61;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Tahoma, Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        header {
+            background-color: var(--green);
+            color: var(--white);
+            text-align: center;
+            padding: 25px 15px;
+            border-bottom: 4px solid var(--gold);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        header p {
+            margin: 8px 0 0;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .intro {
+            background-color: var(--green);
+            color: var(--white);
+            text-align: center;
+            padding: 35px 25px;
+            border-radius: 16px;
+            border-bottom: 5px solid var(--gold);
+            margin-bottom: 25px;
+        }
+
+        .intro h2 {
+            margin-top: 0;
+            font-size: 28px;
+        }
+
+        .section {
+            background-color: var(--white);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 14px;
+            border: 1px solid #E0E5D9;
+        }
+
+        .section h2 {
+            color: var(--green);
+            border-right: 5px solid var(--gold);
+            padding-right: 12px;
+            margin-top: 0;
+        }
+
+        .team {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 18px;
+        }
+
+        .team-member {
+            background-color: var(--white);
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            padding: 20px 15px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 5px 15px rgba(18, 71, 59, 0.12);
+        }
+
+        .member-number {
+            display: inline-block;
+            background-color: var(--green);
+            color: var(--white);
+            width: 38px;
+            height: 38px;
+            line-height: 38px;
+            border-radius: 50%;
+            margin-bottom: 8px;
+        }
+
+        .team-member h3 {
+            color: var(--green);
+            margin: 5px 0;
+        }
+
+        .team-member p {
+            color: var(--muted-green);
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .email {
+            direction: ltr;
+            unicode-bidi: embed;
+            overflow-wrap: anywhere;
+        }
+
+        footer {
+            background-color: var(--green);
+            color: var(--white);
+            text-align: center;
+            padding: 20px 12px;
+            margin-top: 35px;
+            border-top: 4px solid var(--gold);
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 24px;
+            }
+
+            main {
+                padding: 0 12px;
+            }
+
+            .section {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>نظام إدارة مخيمات الحجاج</h1>
+        <p>تقنية لخدمة ضيوف الرحمن</p>
+    </header>
+
+    <main>
+
+        <section class="intro">
+            <h2>من نحن؟</h2>
+            <p>
+                نحن فريق نعمل على تطوير نظام إدارة مخيمات الحجاج،
+                بهدف تنظيم أعمال المخيمات وتسهيل متابعة الخدمات
+                والمعلومات، والمساهمة في تحسين تجربة ضيوف الرحمن.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>نبذة عن المشروع</h2>
+            <p>
+                يهدف مشروع نظام إدارة مخيمات الحجاج إلى توفير واجهة
+                إلكترونية تساعد على تنظيم بيانات المخيمات ومتابعة
+                الإشعارات والمعلومات المهمة، من خلال تصميم واضح وسهل
+                الاستخدام، يدعم سرعة الوصول إلى المعلومات ويساهم
+                في تحسين التنظيم والإدارة.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>رؤيتنا</h2>
+            <p>
+                المساهمة في تطوير إدارة مخيمات الحجاج من خلال حلول
+                تقنية حديثة تدعم التنظيم والكفاءة وجودة الخدمات.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>رسالتنا</h2>
+            <p>
+                تقديم نظام إلكتروني سهل الاستخدام يساعد على تنظيم
+                المعلومات ومتابعة الإشعارات وتسهيل الإجراءات المتعلقة
+                بإدارة المخيمات.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>أهداف المشروع</h2>
+            <ul>
+                <li>تسهيل إدارة المعلومات المتعلقة بالمخيمات.</li>
+                <li>تنظيم الإشعارات والتنبيهات المهمة.</li>
+                <li>توفير واجهة واضحة وسهلة الاستخدام.</li>
+                <li>المساهمة في تحسين سرعة الوصول إلى المعلومات.</li>
+                <li>دعم التنظيم والمتابعة خلال موسم الحج.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>فريق العمل</h2>
+
+            <p>
+                يتكون فريق المشروع من تسع متدربات يعملن على تطوير
+                وتصميم نظام إدارة مخيمات الحجاج.
+            </p>
+
+            <div class="team">
+
+                <div class="team-member">
+                    <span class="member-number">1</span>
+                    <h3>رفا بادكوك</h3>
+                    <p>البريد الإلكتروني:</p>
+                    <p class="email">rafa@example.com</p>
+                </div>
+
+                <div class="team-member">
+                    <span class="member-number">2</span>
+                    <h3>سديم القرني</h3>
+                    <p>البريد الإلكتروني:</p>
+                    <p class="email">sadeem@example.com</p>
+                </div>
+
+                <div class="team-member">
+                    <span class="member-number">3</span>
+                    <h3>فوزيه الجحدلي</h3>
+                    <p>البريد الإلكتروني:</p>
+                    <p class="email">fawziah@example.com</p>
+                </div>
+
+                <div class="team-member">
+                    <span class="member-number">4</span>
+                    <h3>معاني الشنبلي</h3>
+                    <p>البريد الإلكتروني:</p>
+                    <p class="email">maani@example.com</p>
+                </div>
+
+                <div class="team-member">
+                    <span class="member-number">5</span>
+                    <h3>سحاب الفهمي</h3>
+                    <p>البريد الإلكتروني:</p>
+                    <p class="email">sahab@example.com</p>
+                </div>
+
+                <div class="team-member">
+                    <span class="member-number">6</span>
+                    <h3>افراح الحسناني</h3>
+                    <p>البريد الإلكتروني:</p>
+                    <p class="email">afrah@example.com</p>
+                </div>
+
+                <div class="team-member">
+                    <span class="member-number">7</span>
+                    <h3>جمانة السليماني</h3>
+                    <p>البريد الإلكتروني:</p>
+                    <p class="email">jumana@example.com</p>
+                </div>
+
+                <div class="team-member">
+                    <span class="member-number">8</span>
+                    <h3>شيماء الفهمي</h3>
+                    <p>البريد الإلكتروني:</p>
+                    <p class="email">shaima@example.com</p>
+                </div>
+
+                <div class="team-member">
+                    <span class="member-number">9</span>
+                    <h3>ابتهال الجحدلي</h3>
+                    <p>البريد الإلكتروني:</p>
+                    <p class="email">ibtihal@example.com</p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>نظام إدارة مخيمات الحجاج</p>
+        <p>جميع الحقوق محفوظة © 2026</p>
+    </footer>
+
+</body>
+</html>
+```

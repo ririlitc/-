@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحديد الموقع - إدارة المخيمات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #12473B;
+            --gold: #B59A56;
+            --bg: #F1F4EA;
+            --text-dark: #153429;
+            --white: #FFFFFF;
+            --grey-green: #556C61;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Tajawal', sans-serif; }
+        body { background-color: var(--bg); color: var(--text-dark); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        
+        .card {
+            background: var(--white);
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid rgba(181, 154, 86, 0.3);
+        }
+
+        h2 { color: var(--primary); font-size: 20px; text-align: center; margin-bottom: 15px; }
+
+        .map-box {
+            height: 160px;
+            background: #E2E8DF;
+            border-radius: 12px;
+            border: 1px solid var(--grey-green);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .map-box span { font-size: 30px; color: var(--gold); }
+        .map-box p { color: var(--grey-green); font-size: 13px; }
+
+        .btn-gps {
+            position: absolute;
+            bottom: 8px;
+            background: var(--white);
+            color: var(--primary);
+            border: 1px solid var(--gold);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        label { display: block; font-size: 13px; font-weight: 700; margin: 10px 0 5px; color: var(--text-dark); }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--grey-green);
+            border-radius: 8px;
+            background: var(--bg);
+            color: var(--text-dark);
+            font-size: 13px;
+            outline: none;
+        }
+
+        .row { display: flex; gap: 8px; }
+        .row input { text-align: center; direction: ltr; }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        .btn-back { display: block; text-align: center; color: var(--grey-green); font-size: 13px; margin-top: 12px; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>تحديد موقع المخيم</h2>
+
+        <div class="map-box">
+            <span>📍</span>
+            <p>معاينة الخريطة</p>
+            <button class="btn-gps" onclick="getLocation()">🎯 موقعي الحالي</button>
+        </div>
+
+        <form>
+            <label>المخيم / القطاع</label>
+            <select>
+                <option>اختر المخيم...</option>
+                <option>مخيم 1</option>
+                <option>مخيم 2</option>
+            </select>
+
+            <label>الإحداثيات (GPS)</label>
+            <div class="row">
+                <input type="text" id="lat" placeholder="خط العرض" readonly>
+                <input type="text" id="lng" placeholder="خط الطول" readonly>
+            </div>
+
+            <label>ملاحظات الموقع</label>
+            <input type="text" placeholder="اسم الخيمة أو العلامة القريبة">
+
+            <button type="submit" class="btn-submit">تأكيد الموقع</button>
+            <a href="#" class="btn-back">الرجوع للرئيسية</a>
+        </form>
+    </div>
+
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(pos => {
+                    document.getElementById("lat").value = pos.coords.latitude.toFixed(5);
+                    document.getElementById("lng").value = pos.coords.longitude.toFixed(5);
+                });
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Tahoma, Arial, sans-serif;
+            background-color: #F1F4EA;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-box {
+            background-color: #FFFFFF;
+            width: 100%;
+            max-width: 400px;
+            padding: 35px 30px;
+            border-radius: 18px;
+            border-top: 5px solid #B59A56;
+            box-shadow: 0 10px 30px rgba(18, 71, 59, 0.12);
+        }
+
+        h2 {
+            text-align: center;
+            color: #12473B;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #153429;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #D5DDD4;
+            border-radius: 9px;
+            font-size: 15px;
+            font-family: inherit;
+            color: #153429;
+            background-color: #FFFFFF;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="password"]::placeholder {
+            color: #556C61;
+            opacity: 0.8;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #B59A56;
+            box-shadow: 0 0 0 3px rgba(181, 154, 86, 0.18);
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background-color: #12473B;
+            color: #FFFFFF;
+            border: 1px solid #12473B;
+            border-radius: 9px;
+            font-size: 16px;
+            font-family: inherit;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #153429;
+            border-color: #B59A56;
+            transform: translateY(-2px);
+        }
+
+        .footer-text {
+            text-align: center;
+            color: #556C61;
+            font-size: 13px;
+            margin-bottom: 0;
+            margin-top: 22px;
+        }
+
+        .gold-line {
+            width: 55px;
+            height: 3px;
+            background-color: #B59A56;
+            margin: -18px auto 25px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-box">
+        <h2>تسجيل الدخول</h2>
+        <div class="gold-line"></div>
+
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="username">اسم المستخدم:</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="أدخلي اسم المستخدم"
+                    autocomplete="username"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">كلمة المرور:</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="أدخلي كلمة المرور"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
+
+            <input type="submit" value="تسجيل الدخول">
+        </form>
+
+        <p class="footer-text">مرحبًا بكِ في نظامنا</p>
+    </div>
+
+</body>
+</html>
